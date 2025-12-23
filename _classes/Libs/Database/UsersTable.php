@@ -23,6 +23,7 @@ class UsersTable
             $statement->execute(['email' => $email, 'password' => $password]);
 
             return $statement->fetch();
+            
         }catch (PDOException $e) {
             echo $e->getMessage();
             exit();

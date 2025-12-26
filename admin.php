@@ -71,7 +71,11 @@
                             </span>
                         <?php endif ?>
                     </td>
-                    <td></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="_actions/delete.php?id=<?= $user->id ?>" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach ?>
         </table>

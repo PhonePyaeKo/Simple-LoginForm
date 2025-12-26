@@ -77,4 +77,20 @@ class UsersTable
             exit();
         }
     }
+
+    // Delete Data
+    public function delete($id)
+    {
+        try{
+
+            $statement = $this->db->prepare("DELETE FROM users WHERE id=:id");
+            $statement->execute(['id' => $id]);
+
+            return $statement->rowCount();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
 }

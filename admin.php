@@ -4,6 +4,9 @@
 
     use Libs\Database\MySQL;
     use Libs\Database\UsersTable;
+    use Helpers\Auth;
+
+    $auth = Auth::check();
     
     $table = new UsersTable(new MySQL);
     $users = $table->all();
@@ -21,6 +24,20 @@
     <nav class="navbar bg-primary navbar-dark navbar-expand">
         <div class="container">
             <a href="#" class="navbar-brand">Admin</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="profile.php" class="nav-link">
+                        <?= $auth->name ?>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="_actions/logout.php" class="nav-link">
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
         </div>
     </nav>
     <div class="container mt-4">

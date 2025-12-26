@@ -14,6 +14,13 @@ class UsersTable
         $this->db = $mysql->connect();
     }
 
+    // Get All Data
+    public function all()
+    {
+        $statement = $this->db->query("SELECT * FROM users");
+        return $statement->fetchAll();
+    }
+
     // Find User
     public function find($email, $password)
     {

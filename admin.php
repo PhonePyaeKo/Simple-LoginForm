@@ -1,0 +1,49 @@
+<?php
+    include("vendor/autoload.php");
+
+
+    use Libs\Database\MySQL;
+    use Libs\Database\UsersTable;
+    
+    $table = new UsersTable(new MySQL);
+    $users = $table->all();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/554ebdddc2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar bg-primary navbar-dark navbar-expand">
+        <div class="container">
+            <a href="#" class="navbar-brand">Admin</a>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+            <?php foreach($users as $user): ?>
+                <tr>
+                    <td><?= $user->id ?></td>
+                    <td><?= $user->name ?></td>
+                    <td><?= $user->email ?></td>
+                    <td><?= $user->phone ?></td>
+                    <td><?= $user->role_id ?></td>
+                    <td></td>
+                </tr>
+            <?php endforeach ?>
+        </table>
+    </div>
+</body>
+</html>

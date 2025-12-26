@@ -17,7 +17,12 @@ class UsersTable
     // Get All Data
     public function all()
     {
-        $statement = $this->db->query("SELECT * FROM users");
+        $statement = $this->db->query(
+            "SELECT users.*, roles.name AS role
+            FROM users LEFT JOIN roles
+            ON users.role_id = roles.id"
+        );
+
         return $statement->fetchAll();
     }
 

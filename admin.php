@@ -39,7 +39,21 @@
                     <td><?= $user->name ?></td>
                     <td><?= $user->email ?></td>
                     <td><?= $user->phone ?></td>
-                    <td><?= $user->role_id ?></td>
+                    <td>
+                        <?php if($user->role_id == 3): ?>
+                            <span class="badge bg-success">
+                                <?= $user->role ?>
+                            </span>
+                        <?php elseif($user->role_id == 2): ?>
+                            <span class="badge bg-primary">
+                                <?= $user->role ?>
+                            </span>
+                        <?php else: ?>
+                            <span class="badge bg-secondary">
+                                <?= $user->role ?>
+                            </span>
+                        <?php endif ?>
+                    </td>
                     <td></td>
                 </tr>
             <?php endforeach ?>

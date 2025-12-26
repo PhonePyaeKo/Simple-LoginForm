@@ -15,6 +15,10 @@
             <div class="alert alert-warning">Incorrect Email or Password</div>
         <?php endif ?>
 
+        <?php if(isset($_GET['suspended'])): ?>
+            <div class="alert alert-danger">Account Suspended</div>
+        <?php endif ?>
+
         <?php if(isset($_GET['success'])): ?>
             <div class="alert alert-success">Account Created</div>
         <?php endif ?>

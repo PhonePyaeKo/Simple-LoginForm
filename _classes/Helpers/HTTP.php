@@ -15,5 +15,6 @@ class HTTP
         }
 
         header("location: $url");
+        exit();
     }
 }

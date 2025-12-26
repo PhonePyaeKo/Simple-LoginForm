@@ -78,6 +78,38 @@ class UsersTable
         }
     }
 
+    // Suspend User
+    public function suspend($id)
+    {
+        try{
+
+            $statement = $this->db->prepare("UPDATE users SET suspended=1 WHERE id=:id");
+            $statement->execute(['id' => $id]);
+
+            return $statement->rowCount();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
+    // Unsuspend User
+    public function unsuspend($id)
+    {
+        try{
+
+            $statement = $this->db->prepare("UPDATE users SET suspended=0 WHERE id=:id");
+            $statement->execute(['id' => $id]);
+
+            return $statement->rowCount();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
     // Delete Data
     public function delete($id)
     {

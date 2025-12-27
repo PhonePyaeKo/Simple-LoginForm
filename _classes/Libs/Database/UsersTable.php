@@ -31,10 +31,18 @@ class UsersTable
     {
         try {
 
-            $statement = $this->db->prepare("SELECT * FROM users WHERE email=:email AND password=:password");
-            $statement->execute(['email' => $email, 'password' => $password]);
+            $statement = $this->db->prepare("SELECT * FROM users WHERE email=:email");
+            $statement->execute(['email' => $email]);
 
-            return $statement->fetch();
+            $user = $statement->fetch();
+
+            if($user) {
+                if(password_verify($password, $user->password)) {
+                    return $user;
+                }else {
+                    return false;
+                }
+            }
             
         }catch (PDOException $e) {
             echo $e->getMessage();
@@ -47,6 +55,7 @@ class UsersTable
     public function insert($data)
     {
         try {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
             $statement = $this->db->prepare(
                 "INSERT INTO users (name, email, password, phone, address, created_at) VALUES (:name, :email, :password, :phone, :address, Now())"
